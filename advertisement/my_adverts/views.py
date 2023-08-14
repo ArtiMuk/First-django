@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from .models import Advertisement
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    adverts= Advertisement.objects.all()
+    context = {'adverts': adverts}
+    return render(request, 'index.html', context)
 
 def topSellers(request):
     return render(request, 'top-sellers.html')
