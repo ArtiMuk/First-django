@@ -6,13 +6,13 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Advertisement(models.Model):
-    title = models.CharField('Заголовок', max_length=128)
+    title = models.CharField('Заголовок', max_length=15)
     description=models.TextField('Описание')
     photo=models.ImageField('Изображение',upload_to='advertisement/')
     price=models.DecimalField('Цена', max_digits=10, decimal_places=2)
     creation_date=models.DateTimeField('Создано',auto_now_add=True)
     update_date=models.DateTimeField('Обновлено',auto_now=True)
-    category=models.SmallIntegerField('Категория')
+    category=models.DecimalField('Категория', max_digits=10, decimal_places=2)
     location=models.CharField('Локация товара', max_length=255)
     auction=models.BooleanField('Торг', help_text='Отметьте, если торг уместен')
     user = models.ForeignKey(User, verbose_name='Автор', on_delete=models.CASCADE)
